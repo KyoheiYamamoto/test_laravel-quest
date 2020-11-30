@@ -20,11 +20,11 @@ class CreateUserFollowTable extends Migration
             $table->timestamps();
             
             // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('uesrs')->onDelete('cascade');
-            $table->foreign('follow_id')->references('id')->on('uesrs')->onDelete('cascade');
-            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('follow_id')->references('id')->on('users')->onDelete('cascade');
+
             // 組み合わせのダブりを禁止
-            $table->unique(['user_id','follow_id']);
+            $table->unique(['user_id', 'follow_id']);
         });
     }
 

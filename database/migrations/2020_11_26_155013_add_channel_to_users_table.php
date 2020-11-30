@@ -18,6 +18,7 @@ class AddChannelToUsersTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *
