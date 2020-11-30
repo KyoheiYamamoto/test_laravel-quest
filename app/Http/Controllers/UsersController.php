@@ -64,6 +64,30 @@ class UsersController extends Controller
         return view('users.show',$data);
         
     }
+    public function rename(Request $request)
+    {
+        $this->validate($request,[
+            'channel' => 'required|max:15',
+            'name' => 'required|max:15'
+        ]);
+        
+        $user=\Auth::user();
+        $movies = $user->movies()->orderBy('id' ,'desc')->paginate(9);
+        
+        $user->channel = $request->channel;
+        $user->name = $request->name;
+        $user->save();
+        
+        $data=[
+          'user' => $user,
+          'movies' => $movies,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.show',$data);
+    }
+    
 
     /**
      * Show the form for editing the specified resource.
